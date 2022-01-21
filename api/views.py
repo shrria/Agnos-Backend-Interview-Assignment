@@ -11,7 +11,18 @@ def is_match(request):
         message = request.GET['message']
         pattern = request.GET['pattern']
 
-        status = True
+        def match_check(msg, ptn):
+            if (len(msg)==0 and len(ptn)==0):
+                return True
+            if ((len(msg)==0 and len(ptn)>0) or (len(msg)>0 and len(ptn)==0)):
+                return False
+            elif (msg[0] == ptn[0] or ptn[0] == '?'):
+                return match_check(msg[1:] ,ptn[1:])
+            elif (ptn[0] == '*'):
+                return True
+            return False
+
+        status = match_check(message, pattern)
         
         response = {
             'is_match' : status
