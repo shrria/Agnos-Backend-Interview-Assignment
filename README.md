@@ -25,3 +25,4 @@
 <li>While the server is running, open another command line, and type the following commands.</li>
 <li>Run Command "python manage.py test api"</li>
 </ul>
+<hr>
